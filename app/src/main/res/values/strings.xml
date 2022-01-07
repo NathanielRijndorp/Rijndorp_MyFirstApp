@@ -3,4 +3,5 @@
     <string name="helloCustomers">Customer Service for an absolutely iredeemable company!</string>
     <string name="pldt">pldt</string>
     <string name="click_me_to_boost_wifi">Customer Service Call</string>
+    <string name="button">Call Now</string>
 </resources>
