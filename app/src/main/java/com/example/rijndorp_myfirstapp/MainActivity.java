@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,14 +25,37 @@ public class MainActivity extends AppCompatActivity {
                 openMedia();
             }
         });
+        button = (Button) findViewById(R.id.button2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeMedia();
+            }
+        });
     }
 
     private void openMedia() {
-        mediaPlayer = new MediaPlayer();
-        mediaPlayer = MediaPlayer.create(this, R.raw.pldtbadservice);
-
+        if (mediaPlayer == null) {
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer = MediaPlayer.create(this, R.raw.pldtbadservice);
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    stopPlayer();
+                }
+            });
+        }
         mediaPlayer.start();
-
+    }
+    private void closeMedia() {
+        stopPlayer();
+    }
+    private void stopPlayer() {
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+            Toast.makeText(this, "walang kwentang pldt", Toast.LENGTH_SHORT).show();
+        }
     }
 }
 
