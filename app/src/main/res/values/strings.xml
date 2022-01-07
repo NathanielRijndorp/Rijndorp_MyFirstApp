@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Rijndorp_MyFirstApp</string>
+    <string name="helloCustomers">Welcome to PLDT trash company!</string>
 </resources>
